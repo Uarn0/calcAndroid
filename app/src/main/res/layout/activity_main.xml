@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F0">
+
+    <!-- Guideline для панелі -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/panelGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="1.0"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/txtHistory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="17sp"
+        android:textColor="#888"
+        android:background="#E0E0E0"
+        android:padding="8dp"
+        android:gravity="end|center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtDisplay"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="0"
+        android:textSize="32sp"
+        android:textColor="#111"
+        android:background="#FFF"
+        android:gravity="end|center_vertical"
+        android:padding="8dp"
+        android:paddingEnd="76dp"
+        app:layout_constraintTop_toBottomOf="@id/txtHistory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <Button
+        android:id="@+id/sidePanelToggle"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:text="≡"
+        android:textSize="30sp"
+        style="@style/SideButton"
+        app:layout_constraintTop_toBottomOf="@id/txtDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"/>
+
+
+
+    <!-- Головна клавіатура (робимо більшими і знизу) -->
+    <GridLayout
+        android:id="@+id/mainKeyboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:columnCount="4"
+        android:rowCount="5"
+        app:layout_constraintTop_toBottomOf="@id/sidePanelToggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/panelGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:alignmentMode="alignMargins">
+
+        <!-- Для всіх кнопок: -->
+        <Button
+            android:id="@+id/btnProcent"
+            android:text="%"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:minWidth="68dp"
+            android:minHeight="68dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"/>
+        <!-- Далі всі кнопки так само! -->
+        <Button android:id="@+id/btnClear" android:text="C" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnUndo" android:text="⌫" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnMinus" android:text="-" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <!-- ... всі інші кнопки копіюй по шаблону вище ... -->
+        <!-- Далі btn7, btn8, btn9, btnDivide, btn4 ... і т.д. -->
+        <Button android:id="@+id/btn7" android:text="7" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn8" android:text="8" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn9" android:text="9" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnDivide" android:text="÷" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <!-- ...і так для всіх інших -->
+        <Button android:id="@+id/btn4" android:text="4" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn5" android:text="5" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn6" android:text="6" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnMult" android:text="×" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn1" android:text="1" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn2" android:text="2" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn3" android:text="3" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnPlus" android:text="+" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnPosNeg" android:text="+/-" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn0" android:text="0" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnDot" android:text="," style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnEquals" android:text="=" style="@style/CalcButton"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:minWidth="68dp" android:minHeight="68dp"
+            android:layout_rowWeight="1" android:layout_columnWeight="1"/>
+    </GridLayout>
+
+    <!-- Бокова панель -->
+    <GridLayout
+        android:id="@+id/sidePanel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:columnCount="1"
+        android:rowCount="5"
+        app:layout_constraintTop_toTopOf="@id/mainKeyboard"
+        app:layout_constraintBottom_toBottomOf="@id/mainKeyboard"
+        app:layout_constraintStart_toEndOf="@id/panelGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnRedo"
+            android:text="↷"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:minWidth="68dp"
+            android:minHeight="68dp"/>
+        <Button
+            android:id="@+id/btnSqrt"
+            android:text="√"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:minWidth="68dp"
+            android:minHeight="68dp"/>
+        <Button
+            android:id="@+id/btnLogariphm"
+            android:text="ln"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:minWidth="68dp"
+            android:minHeight="68dp"/>
+        <Button
+            android:id="@+id/btnEpsilon"
+            android:text="e"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:minWidth="68dp"
+            android:minHeight="68dp"/>
+        <Button
+            android:id="@+id/btnDegree"
+            android:text="nˣ"
+            style="@style/CalcButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:minWidth="68dp"
+            android:minHeight="68dp"/>
+    </GridLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
