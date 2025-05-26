@@ -75,16 +75,40 @@ class MainActivity : AppCompatActivity() {
 
     // Додає до дисплея новий символ
     private fun insertToDisplay(value: String) {
-        if (isResultDisplayed || txtDisplay.text.toString() == "0" || txtDisplay.text.toString() == "Error") {
-            undoStack.push(txtDisplay.text.toString())
-            txtDisplay.text = value
+        val operators = listOf("+", "-", "×", "÷", "^", "%")
+        val functions = listOf("ln", "√", "^", "e") // додаємо функції
+        val displayText = txtDisplay.text.toString()
+
+        if (isResultDisplayed) {
+            // Після результату: якщо вводимо число, починаємо новий вираз
+            if (value in "0123456789," || value == "e" || value == "π") {
+                undoStack.push(displayText)
+                txtDisplay.text = value
+            } else if (operators.contains(value)) {
+                undoStack.push(displayText)
+                txtDisplay.text = displayText + value
+            } else {
+                undoStack.push(displayText)
+                txtDisplay.text = value
+            }
             isResultDisplayed = false
         } else {
-            undoStack.push(txtDisplay.text.toString())
-            txtDisplay.append(value)
+            // Якщо поле "0" або "Error" — замінити на функцію або цифру
+            if ((displayText == "0" || displayText == "Error") &&
+                (value in "123456789" || functions.contains(value) || value == "π" || value == "e" || value == "ln" || value == "√")) {
+                undoStack.push(displayText)
+                txtDisplay.text = value
+            } else if ((displayText == "0" || displayText == "Error") && value == "0") {
+                // якщо вже 0 і натиснули ще раз 0 — нічого не змінюємо
+            } else {
+                undoStack.push(displayText)
+                txtDisplay.append(value)
+            }
         }
         redoStack.clear()
     }
+
+
 
     private fun btnPosNeg_Click() {
         val disp = txtDisplay.text.toString()
@@ -105,14 +129,17 @@ class MainActivity : AppCompatActivity() {
     private fun btnUndo_Click() {
         if (undoStack.isNotEmpty()) {
             redoStack.push(txtDisplay.text.toString())
-            txtDisplay.text = undoStack.pop()
+            val prev = undoStack.pop()
+            txtDisplay.text = prev
         }
     }
+
 
     private fun btnRedo_Click() {
         if (redoStack.isNotEmpty()) {
             undoStack.push(txtDisplay.text.toString())
-            txtDisplay.text = redoStack.pop()
+            val prev = redoStack.pop()
+            txtDisplay.text = prev
         }
     }
 
